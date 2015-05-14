@@ -144,7 +144,7 @@ namespace Dota2LobbyDump.Bots.DOTABot
 
         private void DisconnectDota()
         {
-            dota.CloseDota();
+            dota.Stop();
         }
 
         public void leaveLobby()

@@ -29,7 +29,7 @@ namespace Dota2LobbyDump.Bots.DOTABot
 
         protected bool isRunning = false;
         private ulong lobbyChannelId;
-        private CallbackManager manager;
+        public CallbackManager manager;
 
         private Thread procThread;
         private bool reconnect;

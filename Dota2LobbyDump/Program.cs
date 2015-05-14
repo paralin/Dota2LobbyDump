@@ -29,8 +29,10 @@ namespace Dota2LobbyDump
             string username = Console.ReadLine();
             Console.Write("Enter a password: ");
             string password = Console.ReadLine();
-            Console.Write("Enter a lobby password: ");
-            string lpass = Console.ReadLine();
+            
+            //Console.Write("Enter a lobby password: ");
+            //string lpass = Console.ReadLine();
+            string lpass = "cow";
 
             bool keepRunning = true;
 

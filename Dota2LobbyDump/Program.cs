@@ -40,9 +40,16 @@ namespace Dota2LobbyDump
             bot.fsm.AddExtension(new BotExtension(bot, lpass));
             bot.Start();
 
+            bool hadLobby = false;
+
             bot.LobbyUpdate += lobby =>
             {
                 if (lobby == null) return;
+                if (!hadLobby)
+                {
+                    hadLobby = true;
+                    bot.dota.InviteToLobby(76561198029304414L);
+                }
                 snapshots.Add(lobby);
                 if (
                     lobby.members.Any(

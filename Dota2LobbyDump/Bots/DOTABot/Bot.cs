@@ -3,6 +3,7 @@ using System.Threading;
 using Appccelerate.StateMachine;
 using Appccelerate.StateMachine.Machine;
 using Dota2;
+using Dota2.GC;
 using Dota2.GC.Dota.Internal;
 using log4net;
 using Newtonsoft.Json.Linq;
@@ -214,7 +215,6 @@ namespace Dota2LobbyDump.Bots.DOTABot
             {
                 client = new SteamClient();
                 DotaGCHandler.Bootstrap(client);
-                ;
                 user = client.GetHandler<SteamUser>();
                 friends = client.GetHandler<SteamFriends>();
                 dota = client.GetHandler<DotaGCHandler>();
@@ -239,15 +239,15 @@ namespace Dota2LobbyDump.Bots.DOTABot
                     if (c.Result != EResult.OK)
                     {
                         log.Error("Logon failure, result: " + c.Result);
-                        if (c.Result == EResult.AccountLogonDenied)
+                        switch (c.Result)
                         {
-                            fsm.Fire(Events.LogonFailSteamGuard);
-                            return;
-                        }
-                        if (c.Result == EResult.ServiceUnavailable || c.Result == EResult.TryAnotherCM)
-                        {
-                            fsm.Fire(Events.LogonFailSteamDown);
-                            return;
+                            case EResult.AccountLogonDenied:
+                                fsm.Fire(Events.LogonFailSteamGuard);
+                                return;
+                            case EResult.ServiceUnavailable:
+                            case EResult.TryAnotherCM:
+                                fsm.Fire(Events.LogonFailSteamDown);
+                                return;
                         }
                         fsm.Fire(Events.LogonFailBadCreds);
                     }
@@ -269,9 +269,16 @@ namespace Dota2LobbyDump.Bots.DOTABot
                         ? Events.DotaEnterLobbyRun
                         : Events.DotaEnterLobbyUI);
 
-                    if (c.lobby.state == CSODOTALobby.State.UI) fsm.FirePriority(Events.DotaEnterLobbyUI);
-                    else if (c.lobby.state == CSODOTALobby.State.RUN) fsm.FirePriority(Events.DotaEnterLobbyRun);
-                    if (LobbyUpdate != null) LobbyUpdate(c.lobby);
+                    switch (c.lobby.state)
+                    {
+                        case CSODOTALobby.State.UI:
+                            fsm.FirePriority(Events.DotaEnterLobbyUI);
+                            break;
+                        case CSODOTALobby.State.RUN:
+                            fsm.FirePriority(Events.DotaEnterLobbyRun);
+                            break;
+                    }
+                    LobbyUpdate?.Invoke(c.lobby);
                 }, manager);
                 new Callback<DotaGCHandler.PingRequest>(c =>
                 {
@@ -282,15 +289,22 @@ namespace Dota2LobbyDump.Bots.DOTABot
                     c => { log.DebugFormat("Received message (popup) from GC: {0}", c.result.id); }, manager);
                 new Callback<DotaGCHandler.ConnectionStatus>(
                     c => log.DebugFormat("GC Connection Status: {0}", JObject.FromObject(c.result)), manager);
-                new Callback<DotaGCHandler.PracticeLobbyUpdate>(c =>
+                new Callback<DotaGCHandler.PracticeLobbySnapshot>(c =>
                 {
                     log.DebugFormat("Lobby snapshot received with state: {0}", c.lobby.state);
                     if (c.lobby != null)
                     {
-                        if (c.lobby.state == CSODOTALobby.State.UI) fsm.FirePriority(Events.DotaEnterLobbyUI);
-                        else if (c.lobby.state == CSODOTALobby.State.RUN) fsm.FirePriority(Events.DotaEnterLobbyRun);
+                        switch (c.lobby.state)
+                        {
+                            case CSODOTALobby.State.UI:
+                                fsm.FirePriority(Events.DotaEnterLobbyUI);
+                                break;
+                            case CSODOTALobby.State.RUN:
+                                fsm.FirePriority(Events.DotaEnterLobbyRun);
+                                break;
+                        }
                     }
-                    if (LobbyUpdate != null) LobbyUpdate(c.lobby);
+                    LobbyUpdate?.Invoke(c.lobby);
                 }, manager);
             }
             client.Connect();

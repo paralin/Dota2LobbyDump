@@ -43,9 +43,6 @@
       <HintPath>..\..\..\packages\Appccelerate.StateMachine.2.12.0\lib\portable-windows8+net45\Appccelerate.StateMachine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Dota2">
-      <HintPath>..\..\..\packages\Dota2.0.2.1\lib\net40\Dota2.dll</HintPath>
-    </Reference>
     <Reference Include="KellermanSoftware.Compare-NET-Objects, Version=3.2.0.0, Culture=neutral, PublicKeyToken=d970ace04cc85217, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\CompareNETObjects.3.02.0.0\lib\net45\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
       <Private>True</Private>
@@ -87,6 +84,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Dota2\Dota2.csproj">
       <Project>{7825d5e3-9b75-4cb4-a77e-a886ccbcc094}</Project>
+      <Name>Dota2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Dota2\Dota2.csproj">
+      <Project>{beb5bf07-bb56-402a-97a3-a41c6444c6a5}</Project>
       <Name>Dota2</Name>
     </ProjectReference>
   </ItemGroup>

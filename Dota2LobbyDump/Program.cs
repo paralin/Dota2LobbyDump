@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using Appccelerate.StateMachine;
 using Appccelerate.StateMachine.Machine;
 using Dota2.GC.Dota.Internal;
-using Dota2LobbyDump.Bots.DOTABot;
+using Dota2.Samples.LobbyDump.Bots.DOTABot;
+using Dota2.Samples.LobbyDump.Bots.DOTABot.Enums;
+using KellermanSoftware.CompareNetObjects;
 using log4net;
 using log4net.Config;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SteamKit2;
-using WLNetwork.BotEnums;
-using WLNetwork.Bots.DOTABot.Enums;
 
-namespace Dota2LobbyDump
+namespace Dota2.Samples.LobbyDump
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
-            var snapshots = new List<CSODOTALobby>();
-
             XmlConfigurator.Configure();
 
             Console.Write("Enter a username: ");
@@ -30,8 +27,6 @@ namespace Dota2LobbyDump
             Console.Write("Enter a password: ");
             string password = Console.ReadLine();
             
-            //Console.Write("Enter a lobby password: ");
-            //string lpass = Console.ReadLine();
             string lpass = "cow";
 
             bool keepRunning = true;
@@ -42,28 +37,43 @@ namespace Dota2LobbyDump
 
             bool hadLobby = false;
 
+            var compare = new CompareLogic
+            {
+                Config =
+                {
+                    MaxDifferences = Int32.MaxValue,
+                    TreatStringEmptyAndNullTheSame = true
+                }
+            };
+
+            CSODOTALobby oldLobby = null;
             bot.LobbyUpdate += lobby =>
             {
+                var ol = oldLobby;
+                oldLobby = lobby;
                 if (lobby == null) return;
-                if (!hadLobby)
+                if (ol == null)
                 {
-                    hadLobby = true;
                     bot.dota.InviteToLobby(76561198029304414L);
                 }
-                snapshots.Add(lobby);
+                File.AppendAllText("snapshots.json", JObject.FromObject(lobby).ToString(Formatting.None)+"\n");
+                var diff = compare.Compare(ol, lobby);
+                if (!diff.AreEqual)
+                {
+                    File.AppendAllText("differences.txt", diff.DifferencesString+"\n");
+                    Console.WriteLine(diff.DifferencesString);
+                }
+
                 if (
                     lobby.members.Any(
                         m =>
                             m.team == DOTA_GC_TEAM.DOTA_GC_TEAM_BAD_GUYS ||
                             m.team == DOTA_GC_TEAM.DOTA_GC_TEAM_GOOD_GUYS) && lobby.state == CSODOTALobby.State.UI)
                     bot.StartGame();
-                if (lobby.state == CSODOTALobby.State.POSTGAME)
-                {
-                    bot.leaveLobby();
-                    bot.Destroy();
-                    File.WriteAllText("Snapshots.json", JArray.FromObject(snapshots).ToString(Formatting.Indented));
-                    keepRunning = false;
-                }
+                if (lobby.state != CSODOTALobby.State.POSTGAME) return;
+                bot.leaveLobby();
+                bot.Destroy();
+                keepRunning = false;
             };
 
             while (keepRunning)

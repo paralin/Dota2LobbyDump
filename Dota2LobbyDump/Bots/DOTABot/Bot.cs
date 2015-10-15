@@ -2,17 +2,15 @@
 using System.Threading;
 using Appccelerate.StateMachine;
 using Appccelerate.StateMachine.Machine;
-using Dota2;
 using Dota2.GC;
 using Dota2.GC.Dota.Internal;
+using Dota2.Samples.LobbyDump.Bots.DOTABot.Enums;
 using log4net;
 using Newtonsoft.Json.Linq;
 using SteamKit2;
-using WLNetwork.BotEnums;
-using WLNetwork.Bots.DOTABot.Enums;
 using Timer = System.Timers.Timer;
 
-namespace Dota2LobbyDump.Bots.DOTABot
+namespace Dota2.Samples.LobbyDump.Bots.DOTABot
 {
     public class LobbyBot
     {

@@ -1,4 +1,4 @@
-﻿namespace WLNetwork.Bots.DOTABot.Enums
+﻿namespace Dota2.Samples.LobbyDump.Bots.DOTABot.Enums
 {
     public enum Events
     {

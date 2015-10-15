@@ -1,4 +1,4 @@
-﻿namespace WLNetwork.BotEnums
+﻿namespace Dota2.Samples.LobbyDump.Bots.DOTABot.Enums
 {
     public enum States
     {

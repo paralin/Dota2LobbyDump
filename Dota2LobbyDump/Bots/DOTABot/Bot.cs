@@ -5,6 +5,7 @@ using Appccelerate.StateMachine.Machine;
 using Dota2.GC;
 using Dota2.GC.Dota.Internal;
 using Dota2.Samples.LobbyDump.Bots.DOTABot.Enums;
+using Dota2.Samples.LobbyDump.Utils;
 using log4net;
 using Newtonsoft.Json.Linq;
 using SteamKit2;
@@ -219,7 +220,7 @@ namespace Dota2.Samples.LobbyDump.Bots.DOTABot
                 manager = new CallbackManager(client);
 
                 isRunning = true;
-                new Callback<SteamClient.ConnectedCallback>(c =>
+                manager.Add<SteamClient.ConnectedCallback>(c =>
                 {
                     if (c.Result != EResult.OK)
                     {
@@ -229,10 +230,13 @@ namespace Dota2.Samples.LobbyDump.Bots.DOTABot
                     }
 
                     user.LogOn(details);
-                }, manager);
-                new Callback<SteamClient.DisconnectedCallback>(
-                    c => { if (fsm != null) fsm.Fire(Events.Disconnected); }, manager);
-                new Callback<SteamUser.LoggedOnCallback>(c =>
+                });
+                manager.Add<SteamClient.DisconnectedCallback>(
+                    c =>
+                    {
+                        fsm?.Fire(Events.Disconnected);
+                    });
+                manager.Add<SteamUser.LoggedOnCallback>(c =>
                 {
                     if (c.Result != EResult.OK)
                     {
@@ -253,13 +257,13 @@ namespace Dota2.Samples.LobbyDump.Bots.DOTABot
                     {
                         fsm.Fire(Events.Connected);
                     }
-                }, manager);
-                new Callback<DotaGCHandler.UnhandledDotaGCCallback>(
-                    c => log.Debug("Unknown GC message: " + c.Message.MsgType), manager);
-                new Callback<DotaGCHandler.GCWelcomeCallback>(
-                    c => fsm.Fire(Events.DotaGCReady), manager);
-                new Callback<SteamFriends.FriendsListCallback>(c => log.Debug(c.FriendList), manager);
-                new Callback<DotaGCHandler.PracticeLobbySnapshot>(c =>
+                });
+                manager.Add<DotaGCHandler.UnhandledDotaGCCallback>(
+                    c => log.Debug("Unknown GC message: " + c.Message.MsgType));
+                manager.Add<DotaGCHandler.GCWelcomeCallback>(
+                    c => fsm.Fire(Events.DotaGCReady));
+                manager.Add<SteamFriends.FriendsListCallback>(c => log.Debug(c.FriendList));
+                manager.Add<DotaGCHandler.PracticeLobbySnapshot>(c =>
                 {
                     log.DebugFormat("Lobby snapshot received with state: {0}", c.lobby.state);
 
@@ -277,17 +281,17 @@ namespace Dota2.Samples.LobbyDump.Bots.DOTABot
                             break;
                     }
                     LobbyUpdate?.Invoke(c.lobby);
-                }, manager);
-                new Callback<DotaGCHandler.PingRequest>(c =>
+                });
+                manager.Add<DotaGCHandler.PingRequest>(c =>
                 {
                     log.Debug("GC Sent a ping request. Sending pong!");
                     dota.Pong();
-                }, manager);
-                new Callback<DotaGCHandler.Popup>(
-                    c => { log.DebugFormat("Received message (popup) from GC: {0}", c.result.id); }, manager);
-                new Callback<DotaGCHandler.ConnectionStatus>(
-                    c => log.DebugFormat("GC Connection Status: {0}", JObject.FromObject(c.result)), manager);
-                new Callback<DotaGCHandler.PracticeLobbySnapshot>(c =>
+                });
+                manager.Add<DotaGCHandler.Popup>(
+                    c => { log.DebugFormat("Received message (popup) from GC: {0}", c.result.id); });
+                manager.Add<DotaGCHandler.ConnectionStatus>(
+                    c => log.DebugFormat("GC Connection Status: {0}", JObject.FromObject(c.result)));
+                manager.Add<DotaGCHandler.PracticeLobbySnapshot>(c =>
                 {
                     log.DebugFormat("Lobby snapshot received with state: {0}", c.lobby.state);
                     if (c.lobby != null)
@@ -303,7 +307,7 @@ namespace Dota2.Samples.LobbyDump.Bots.DOTABot
                         }
                     }
                     LobbyUpdate?.Invoke(c.lobby);
-                }, manager);
+                });
             }
             client.Connect();
             procThread = new Thread(SteamThread);

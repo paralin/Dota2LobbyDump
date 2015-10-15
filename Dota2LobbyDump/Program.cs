@@ -35,8 +35,6 @@ namespace Dota2.Samples.LobbyDump
             bot.fsm.AddExtension(new BotExtension(bot, lpass));
             bot.Start();
 
-            bool hadLobby = false;
-
             var compare = new CompareLogic
             {
                 Config =

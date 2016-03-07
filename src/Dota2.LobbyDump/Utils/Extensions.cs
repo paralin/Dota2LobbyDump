@@ -1,7 +1,7 @@
 ﻿using System;
 using SteamKit2;
 
-namespace Dota2.Samples.LobbyDump.Utils
+namespace Dota2.LobbyDump.Utils
 {
     public static class Extensions
     {

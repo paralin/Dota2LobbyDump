@@ -1,0 +1,551 @@
+{
+  "locked": false,
+  "version": 2,
+  "targets": {
+    "DNX,Version=v4.5.1": {
+      "Appccelerate.Fundamentals/2.1.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/portable-windows8+net45/Appccelerate.Fundamentals.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+net45/Appccelerate.Fundamentals.dll": {}
+        }
+      },
+      "Appccelerate.StateMachine/2.7.0": {
+        "type": "package",
+        "dependencies": {
+          "Appccelerate.Fundamentals": "[2.0.0, 3.0.0)"
+        },
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/portable-windows8+net45/Appccelerate.StateMachine.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+net45/Appccelerate.StateMachine.dll": {}
+        }
+      },
+      "CompareNETObjects/3.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net451/KellermanSoftware.Compare-NET-Objects.dll": {}
+        },
+        "runtime": {
+          "lib/net451/KellermanSoftware.Compare-NET-Objects.dll": {}
+        }
+      },
+      "Dota2/0.7.6": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "[7.0.1, 8.0.2]",
+          "SteamKit2": "[1.6.5, 1.7.0)"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/Dota2.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Dota2.dll": {}
+        }
+      },
+      "log4net/2.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net45-full/log4net.dll": {}
+        },
+        "runtime": {
+          "lib/net45-full/log4net.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "protobuf-net/2.0.0.668": {
+        "type": "package",
+        "compile": {
+          "lib/net40/protobuf-net.dll": {}
+        },
+        "runtime": {
+          "lib/net40/protobuf-net.dll": {}
+        }
+      },
+      "SteamKit2/1.6.5": {
+        "type": "package",
+        "dependencies": {
+          "protobuf-net": "[2.0.0.668]"
+        },
+        "compile": {
+          "lib/net40/SteamKit2.dll": {}
+        },
+        "runtime": {
+          "lib/net40/SteamKit2.dll": {}
+        }
+      }
+    },
+    "DNX,Version=v4.5.1/win7-x86": {
+      "Appccelerate.Fundamentals/2.1.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/portable-windows8+net45/Appccelerate.Fundamentals.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+net45/Appccelerate.Fundamentals.dll": {}
+        }
+      },
+      "Appccelerate.StateMachine/2.7.0": {
+        "type": "package",
+        "dependencies": {
+          "Appccelerate.Fundamentals": "[2.0.0, 3.0.0)"
+        },
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/portable-windows8+net45/Appccelerate.StateMachine.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+net45/Appccelerate.StateMachine.dll": {}
+        }
+      },
+      "CompareNETObjects/3.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net451/KellermanSoftware.Compare-NET-Objects.dll": {}
+        },
+        "runtime": {
+          "lib/net451/KellermanSoftware.Compare-NET-Objects.dll": {}
+        }
+      },
+      "Dota2/0.7.6": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "[7.0.1, 8.0.2]",
+          "SteamKit2": "[1.6.5, 1.7.0)"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/Dota2.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Dota2.dll": {}
+        }
+      },
+      "log4net/2.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net45-full/log4net.dll": {}
+        },
+        "runtime": {
+          "lib/net45-full/log4net.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "protobuf-net/2.0.0.668": {
+        "type": "package",
+        "compile": {
+          "lib/net40/protobuf-net.dll": {}
+        },
+        "runtime": {
+          "lib/net40/protobuf-net.dll": {}
+        }
+      },
+      "SteamKit2/1.6.5": {
+        "type": "package",
+        "dependencies": {
+          "protobuf-net": "[2.0.0.668]"
+        },
+        "compile": {
+          "lib/net40/SteamKit2.dll": {}
+        },
+        "runtime": {
+          "lib/net40/SteamKit2.dll": {}
+        }
+      }
+    },
+    "DNX,Version=v4.5.1/win7-x64": {
+      "Appccelerate.Fundamentals/2.1.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/portable-windows8+net45/Appccelerate.Fundamentals.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+net45/Appccelerate.Fundamentals.dll": {}
+        }
+      },
+      "Appccelerate.StateMachine/2.7.0": {
+        "type": "package",
+        "dependencies": {
+          "Appccelerate.Fundamentals": "[2.0.0, 3.0.0)"
+        },
+        "frameworkAssemblies": [
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/portable-windows8+net45/Appccelerate.StateMachine.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+net45/Appccelerate.StateMachine.dll": {}
+        }
+      },
+      "CompareNETObjects/3.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net451/KellermanSoftware.Compare-NET-Objects.dll": {}
+        },
+        "runtime": {
+          "lib/net451/KellermanSoftware.Compare-NET-Objects.dll": {}
+        }
+      },
+      "Dota2/0.7.6": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "[7.0.1, 8.0.2]",
+          "SteamKit2": "[1.6.5, 1.7.0)"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/Dota2.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Dota2.dll": {}
+        }
+      },
+      "log4net/2.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net45-full/log4net.dll": {}
+        },
+        "runtime": {
+          "lib/net45-full/log4net.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "protobuf-net/2.0.0.668": {
+        "type": "package",
+        "compile": {
+          "lib/net40/protobuf-net.dll": {}
+        },
+        "runtime": {
+          "lib/net40/protobuf-net.dll": {}
+        }
+      },
+      "SteamKit2/1.6.5": {
+        "type": "package",
+        "dependencies": {
+          "protobuf-net": "[2.0.0.668]"
+        },
+        "compile": {
+          "lib/net40/SteamKit2.dll": {}
+        },
+        "runtime": {
+          "lib/net40/SteamKit2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Appccelerate.Fundamentals/2.1.0": {
+      "type": "package",
+      "sha512": "t5jxUV+0f9PjOTDELQrAjAnnfBXRapMlmpO9dnd1GDfgPIMblYuIp/eC9gYG7m54UItPchdGa+Cvcn1DybUNcg==",
+      "files": [
+        "Appccelerate.Fundamentals.2.1.0.nupkg",
+        "Appccelerate.Fundamentals.2.1.0.nupkg.sha512",
+        "Appccelerate.Fundamentals.nuspec",
+        "lib/portable-windows8+net45/Appccelerate.Fundamentals.dll",
+        "lib/portable-windows8+net45/Appccelerate.Fundamentals.XML"
+      ]
+    },
+    "Appccelerate.StateMachine/2.7.0": {
+      "type": "package",
+      "sha512": "5O31mNU7BNALUbf9HwdJ7AgK1FBH7q3Gho9ZWDMZMN9bp8Akl9vaFr0ZKAKkvtqFMCBNoRTZ7HNA53YCc01h5g==",
+      "files": [
+        "Appccelerate.StateMachine.2.7.0.nupkg",
+        "Appccelerate.StateMachine.2.7.0.nupkg.sha512",
+        "Appccelerate.StateMachine.nuspec",
+        "lib/portable-windows8+net45/Appccelerate.StateMachine.dll",
+        "lib/portable-windows8+net45/Appccelerate.StateMachine.pdb",
+        "lib/portable-windows8+net45/Appccelerate.StateMachine.XML",
+        "src/ActiveStateMachine.cs",
+        "src/EventInformation.cs",
+        "src/Extensions/ExtensionBase.cs",
+        "src/HistoryType.cs",
+        "src/IStateMachine.cs",
+        "src/IStateMachineInformation.cs",
+        "src/ListExtensionMethods.cs",
+        "src/Machine/ActionHolders/ActionHoldersExceptionMessages.cs",
+        "src/Machine/ActionHolders/ArgumentActionHolder.cs",
+        "src/Machine/ActionHolders/ArgumentLessActionHolder.cs",
+        "src/Machine/ActionHolders/IActionHolder.cs",
+        "src/Machine/ActionHolders/ParametrizedActionHolder{T}.cs",
+        "src/Machine/Contexts/TransitionContext.cs",
+        "src/Machine/Events/ContextEventArgs.cs",
+        "src/Machine/Events/IFactory.cs",
+        "src/Machine/Events/TransitionCompletedEventArgs.cs",
+        "src/Machine/Events/TransitionEventArgs.cs",
+        "src/Machine/Events/TransitionExceptionEventArgs.cs",
+        "src/Machine/ExceptionMessages.cs",
+        "src/Machine/GuardHolders/ArgumentGuardHolder.cs",
+        "src/Machine/GuardHolders/ArgumentLessGuardHolder.cs",
+        "src/Machine/GuardHolders/GuardHoldersExceptionMessages.cs",
+        "src/Machine/GuardHolders/IGuardHolder.cs",
+        "src/Machine/HierarchyBuilder.cs",
+        "src/Machine/IExtension.cs",
+        "src/Machine/IExtensionHost.cs",
+        "src/Machine/Initializable.cs",
+        "src/Machine/INotifier.cs",
+        "src/Machine/IState.cs",
+        "src/Machine/IStateDictionary.cs",
+        "src/Machine/IStateMachineReport.cs",
+        "src/Machine/ITransition.cs",
+        "src/Machine/ITransitionContext.cs",
+        "src/Machine/ITransitionDictionary.cs",
+        "src/Machine/ITransitionResult.cs",
+        "src/Machine/Missable.cs",
+        "src/Machine/RecordType.cs",
+        "src/Machine/StandardFactory.cs",
+        "src/Machine/StateBuilder.g.cs",
+        "src/Machine/StateDictionary.cs",
+        "src/Machine/StateMachine.cs",
+        "src/Machine/StateMachineException.cs",
+        "src/Machine/StateMachineInitializer.cs",
+        "src/Machine/States/State.cs",
+        "src/Machine/States/StatesExceptionMessages.cs",
+        "src/Machine/Transitions/Transition.cs",
+        "src/Machine/Transitions/TransitionDictionary.cs",
+        "src/Machine/Transitions/TransitionInfo.cs",
+        "src/Machine/Transitions/TransitionResult.cs",
+        "src/Machine/Transitions/TransitionsExceptionMessages.cs",
+        "src/PassiveStateMachine.cs",
+        "src/Persistence/IStateMachineLoader.cs",
+        "src/Persistence/IStateMachineSaver.cs",
+        "src/Properties/AssemblyInfo.cs",
+        "src/Properties/GlobalAssemblyInfo.cs",
+        "src/Reports/CsvStateMachineReportGenerator.cs",
+        "src/Reports/CsvStatesWriter.cs",
+        "src/Reports/CsvTransitionsWriter.cs",
+        "src/Reports/StateMachineReportGenerator.cs",
+        "src/Reports/YEdStateMachineReportGenerator.cs",
+        "src/Syntax/IEntryActionSyntax.cs",
+        "src/Syntax/IEventSyntax.cs",
+        "src/Syntax/IExitActionSyntax.cs",
+        "src/Syntax/IGotoInIfSyntax.cs",
+        "src/Syntax/IGotoSyntax.cs",
+        "src/Syntax/IHierarchySyntax.cs",
+        "src/Syntax/IIfOrOtherwiseSyntax.cs",
+        "src/Syntax/IIfSyntax.cs",
+        "src/Syntax/IOnSyntax.cs",
+        "src/Syntax/IOtherwiseSyntax.cs"
+      ]
+    },
+    "CompareNETObjects/3.3.0": {
+      "type": "package",
+      "sha512": "aHyrwOay2rlYLgTWJPQ8mcwzdu3RVuClz5RegcVlwZOjitvJHvR/3p8M+zc+5EErMwA6ls1j6IeXVGRyuqZMJQ==",
+      "files": [
+        "CompareNETObjects.3.3.0.nupkg",
+        "CompareNETObjects.3.3.0.nupkg.sha512",
+        "CompareNETObjects.nuspec",
+        "lib/net35/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net35/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net40/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net40/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net45/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net45/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/net451/KellermanSoftware.Compare-NET-Objects.dll",
+        "lib/net451/KellermanSoftware.Compare-NET-Objects.xml",
+        "lib/portable-net4+sl5+wp8+win8/KellermanSoftware.Compare-NET-Objects-Portable.dll",
+        "lib/portable-net4+sl5+wp8+win8/KellermanSoftware.Compare-NET-Objects-Portable.xml",
+        "readme.txt"
+      ]
+    },
+    "Dota2/0.7.6": {
+      "type": "package",
+      "sha512": "5Vte6cyW8prlD8Ag8HikVrTPWc8lvF5cAZFaJ9ik0VjC9AttfwWNEqslUf4WQtzmoXa+uf9d0t88hHRNy2jK4w==",
+      "files": [
+        "Dota2.0.7.6.nupkg",
+        "Dota2.0.7.6.nupkg.sha512",
+        "Dota2.nuspec",
+        "lib/dnx451/Dota2.dll",
+        "lib/dnx451/Dota2.xml",
+        "lib/net40/Dota2.dll",
+        "lib/net40/Dota2.xml",
+        "lib/net45/Dota2.dll",
+        "lib/net45/Dota2.xml",
+        "lib/net451/Dota2.dll",
+        "lib/net451/Dota2.xml"
+      ]
+    },
+    "log4net/2.0.5": {
+      "type": "package",
+      "sha512": "AEqPZz+v+OikfnR2SqRVdQPnSaLq5y9Iz1CfRQZ9kTKPYCXHG6zYmDHb7wJotICpDLMr/JqokyjiqKAjUKp0ng==",
+      "files": [
+        "lib/net10-full/log4net.dll",
+        "lib/net10-full/log4net.xml",
+        "lib/net11-full/log4net.dll",
+        "lib/net11-full/log4net.xml",
+        "lib/net20-full/log4net.dll",
+        "lib/net20-full/log4net.xml",
+        "lib/net35-client/log4net.dll",
+        "lib/net35-client/log4net.xml",
+        "lib/net35-full/log4net.dll",
+        "lib/net35-full/log4net.xml",
+        "lib/net40-client/log4net.dll",
+        "lib/net40-client/log4net.xml",
+        "lib/net40-full/log4net.dll",
+        "lib/net40-full/log4net.xml",
+        "lib/net45-full/log4net.dll",
+        "lib/net45-full/log4net.xml",
+        "log4net.2.0.5.nupkg",
+        "log4net.2.0.5.nupkg.sha512",
+        "log4net.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/7.0.1": {
+      "type": "package",
+      "sha512": "q3V4KLetMLnt1gpAVWgtXnHjKs0UG/RalBc29u2ZKxd5t5Ze4JBL5WiiYIklJyK/5CRiIiNwigVQUo0FgbsuWA==",
+      "files": [
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
+        "Newtonsoft.Json.7.0.1.nupkg",
+        "Newtonsoft.Json.7.0.1.nupkg.sha512",
+        "Newtonsoft.Json.nuspec",
+        "tools/install.ps1"
+      ]
+    },
+    "protobuf-net/2.0.0.668": {
+      "type": "package",
+      "sha512": "Lgj+Kf1+RV0utKxX9u1WEcymPGrbWrj/AwFmFADFLLa/LLdc1ji2MIGcecFRAGUu6UO8BRbdjZAIYWvLlN1B/A==",
+      "files": [
+        "lib/net20/protobuf-net.dll",
+        "lib/net20/protobuf-net.pdb",
+        "lib/net20/protobuf-net.xml",
+        "lib/net20-cf/protobuf-net.dll",
+        "lib/net20-cf/protobuf-net.pdb",
+        "lib/net20-cf/protobuf-net.xml",
+        "lib/net30/protobuf-net.dll",
+        "lib/net30/protobuf-net.pdb",
+        "lib/net30/protobuf-net.xml",
+        "lib/net35/protobuf-net.dll",
+        "lib/net35/protobuf-net.pdb",
+        "lib/net35/protobuf-net.xml",
+        "lib/net35-cf/protobuf-net.dll",
+        "lib/net35-cf/protobuf-net.pdb",
+        "lib/net35-cf/protobuf-net.xml",
+        "lib/net40/protobuf-net.dll",
+        "lib/net40/protobuf-net.pdb",
+        "lib/net40/protobuf-net.xml",
+        "lib/net40-cf/protobuf-net.dll",
+        "lib/net40-cf/protobuf-net.pdb",
+        "lib/net40-cf/protobuf-net.xml",
+        "lib/netcore45/protobuf-net.dll",
+        "lib/netcore45/protobuf-net.pdb",
+        "lib/netcore45/protobuf-net.pri",
+        "lib/netcore45/protobuf-net.XML",
+        "lib/portable-sl4+net40+wp7+windows8/protobuf-net.dll",
+        "lib/portable-sl4+net40+wp7+windows8/protobuf-net.pdb",
+        "lib/portable-sl4+net40+wp7+windows8/protobuf-net.xml",
+        "lib/sl3-wp/protobuf-net.dll",
+        "lib/sl3-wp/protobuf-net.pdb",
+        "lib/sl3-wp/protobuf-net.xml",
+        "lib/sl4/protobuf-net.dll",
+        "lib/sl4/protobuf-net.pdb",
+        "lib/sl4/protobuf-net.xml",
+        "lib/sl4-windowsphone71/protobuf-net.dll",
+        "lib/sl4-windowsphone71/protobuf-net.pdb",
+        "lib/sl4-windowsphone71/protobuf-net.xml",
+        "lib/windowsphone8/protobuf-net.dll",
+        "lib/windowsphone8/protobuf-net.pdb",
+        "lib/windowsphone8/protobuf-net.xml",
+        "protobuf-net.2.0.0.668.nupkg",
+        "protobuf-net.2.0.0.668.nupkg.sha512",
+        "protobuf-net.nuspec"
+      ]
+    },
+    "SteamKit2/1.6.5": {
+      "type": "package",
+      "sha512": "ZKLQT1+/v0s8QXdKYnWZTpZi1JYbJjqYVHPMokKTa707FitxM3oBnLrFMAFGNesJartt0wQjjSsOtSf2fhZqIA==",
+      "files": [
+        "lib/net40/SteamKit2.dll",
+        "lib/net40/SteamKit2.xml",
+        "readme.txt",
+        "SteamKit2.1.6.5.nupkg",
+        "SteamKit2.1.6.5.nupkg.sha512",
+        "SteamKit2.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [
+      "Dota2 >= 0.7.6",
+      "log4net >= 2.0.5",
+      "Appccelerate.StateMachine >= 2.7.0",
+      "CompareNETObjects >= 3.3.0"
+    ],
+    "DNX,Version=v4.5.1": [
+      "fx/System.Runtime "
+    ]
+  }
+}

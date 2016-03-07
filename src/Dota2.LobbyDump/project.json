@@ -1,0 +1,31 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "Dota2.LobbyDump Console Application",
+  "authors": [ "kidov" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "Dota2": "0.7.6",
+    "log4net": "2.0.5",
+    "Appccelerate.StateMachine": "2.7.0",
+    "CompareNETObjects": "3.3.0"
+  },
+
+  "commands": {
+    "Dota2.LobbyDump": "Dota2.LobbyDump"
+  },
+
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.Runtime": ""
+      }
+    }
+  }
+}

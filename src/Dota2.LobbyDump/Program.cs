@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using Appccelerate.StateMachine;
 using Appccelerate.StateMachine.Machine;
 using Dota2.GC.Dota.Internal;
-using Dota2.Samples.LobbyDump.Bots.DOTABot;
-using Dota2.Samples.LobbyDump.Bots.DOTABot.Enums;
+using Dota2.LobbyDump.Bots;
+using Dota2.LobbyDump.Bots.Enums;
 using KellermanSoftware.CompareNetObjects;
 using log4net;
 using log4net.Config;
@@ -14,24 +15,24 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SteamKit2;
 
-namespace Dota2.Samples.LobbyDump
+namespace Dota2.LobbyDump
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
-            XmlConfigurator.Configure();
+            BasicConfigurator.Configure();
 
             Console.Write("Enter a username: ");
             string username = Console.ReadLine();
             Console.Write("Enter a password: ");
             string password = Console.ReadLine();
-            
+
             string lpass = "cow";
 
             bool keepRunning = true;
 
-            var bot = new LobbyBot(new SteamUser.LogOnDetails {Username = username, Password = password});
+            var bot = new LobbyBot(new SteamUser.LogOnDetails { Username = username, Password = password });
             bot.fsm.AddExtension(new BotExtension(bot, lpass));
             bot.Start();
 
@@ -53,21 +54,25 @@ namespace Dota2.Samples.LobbyDump
                 if (ol == null)
                 {
                     bot.dota.InviteToLobby(76561198029304414L);
+                    bot.dota.JoinTeam(DOTA_GC_TEAM.DOTA_GC_TEAM_PLAYER_POOL);
                 }
-                File.AppendAllText("snapshots.json", JObject.FromObject(lobby).ToString(Formatting.None)+"\n");
-                var diff = compare.Compare(ol, lobby);
-                if (!diff.AreEqual)
+                File.AppendAllText("snapshots.json", JObject.FromObject(lobby).ToString(Formatting.None) + "\n");
+                var diffb = compare.Compare(ol, lobby);
+                if (!diffb.AreEqual)
                 {
-                    File.AppendAllText("differences.txt", diff.DifferencesString+"\n");
-                    Console.WriteLine(diff.DifferencesString);
+                    File.AppendAllText("differences.txt", diffb.DifferencesString + "\n");
+                    Console.WriteLine(diffb.DifferencesString);
                 }
 
-                if (
-                    lobby.members.Any(
+                if (lobby.state == CSODOTALobby.State.UI)
+                {
+                    if(lobby.members.Any(
                         m =>
-                            m.team == DOTA_GC_TEAM.DOTA_GC_TEAM_BAD_GUYS ||
-                            m.team == DOTA_GC_TEAM.DOTA_GC_TEAM_GOOD_GUYS) && lobby.state == CSODOTALobby.State.UI)
-                    bot.StartGame();
+                            (m.team == DOTA_GC_TEAM.DOTA_GC_TEAM_BAD_GUYS ||
+                             m.team == DOTA_GC_TEAM.DOTA_GC_TEAM_GOOD_GUYS) &&
+                            m.id != bot.dota.SteamClient.SteamID.ConvertToUInt64()))
+                        bot.StartGame();
+                }
                 if (lobby.state != CSODOTALobby.State.POSTGAME) return;
                 bot.leaveLobby();
                 bot.Destroy();

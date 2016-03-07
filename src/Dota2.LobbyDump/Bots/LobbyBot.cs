@@ -4,14 +4,14 @@ using Appccelerate.StateMachine;
 using Appccelerate.StateMachine.Machine;
 using Dota2.GC;
 using Dota2.GC.Dota.Internal;
-using Dota2.Samples.LobbyDump.Bots.DOTABot.Enums;
-using Dota2.Samples.LobbyDump.Utils;
+using Dota2.LobbyDump.Bots.Enums;
+using Dota2.LobbyDump.Utils;
 using log4net;
 using Newtonsoft.Json.Linq;
 using SteamKit2;
 using Timer = System.Timers.Timer;
 
-namespace Dota2.Samples.LobbyDump.Bots.DOTABot
+namespace Dota2.LobbyDump.Bots
 {
     public class LobbyBot
     {
@@ -125,7 +125,7 @@ namespace Dota2.Samples.LobbyDump.Bots.DOTABot
 #endif
                 allow_spectating = true,
                 fill_with_bots = false,
-                game_mode = (uint) DOTA_GameMode.DOTA_GAMEMODE_AP,
+                game_mode = (uint)DOTA_GameMode.DOTA_GAMEMODE_AP,
                 game_name = "Test Lobby",
                 game_version = DOTAGameVersion.GAME_VERSION_CURRENT
             };
@@ -331,7 +331,7 @@ namespace Dota2.Samples.LobbyDump.Bots.DOTABot
                     user = null;
                 }
                 if (client.IsConnected) client.Disconnect();
-                client.RemoveHandler(typeof (DotaGCHandler));
+                client.RemoveHandler(typeof(DotaGCHandler));
                 client = null;
             }
         }
